@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 100px;
+            background-color: #5c596e;
+        }
+
+        #cartoon {
+            width: 150px; /* Adjust the width of the cartoon sticker */
+            margin-bottom: 20px;
+        }
+
+        #message {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        #buttons {
+            display: flex;
+            justify-content: center;
+        }
+
+        .button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+
+        #noButton {
+            background-color: #f44336;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <img id="cartoon" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/9178a78e-0e0b-42c7-97a5-ef4c33e4faee/d6s7p97-97d48b69-91af-42e9-9cc8-9994ced62e3c.png/v1/fill/w_920,h_498,q_80,strp/jake_wearing_finn_s_hat_by_aquaseashells_d6s7p97-fullview.jpg" alt="Dancing Cartoon"> <!-- Replace with your cartoon image URL -->
+
+
+    <div id="message">Chalo Nach Korbe?</div>
+    
+    <div id="buttons">
+        <button id="yesButton" class="button" onclick="respond('yes')">YES</button>
+        <button id="noButton" class="button" onmousemove="moveAway(event)" disabled>NO</button>
+    </div>
+
+    <script>
+        function respond(answer) {
+            if (answer === 'yes') {
+                window.location.href = 'ifYes.html';
+            } else {
+                alert("Oh, no worries. Maybe some other time.");
+            }
+        }
+
+        function moveAway(event) {
+            var button = document.getElementById('noButton');
+            var boundingRect = button.getBoundingClientRect();
+
+            var offsetX = event.clientX - boundingRect.left;
+            var offsetY = event.clientY - boundingRect.top;
+
+            var moveX = (offsetX - boundingRect.width / 2) * -20;
+            var moveY = (offsetY - boundingRect.height / 2) * -20;
+
+            button.style.transform = 'translate(' + moveX + 'px, ' + moveY + 'px)';
+        }
+
+        // Reset the button position when the mouse leaves
+        document.getElementById('noButton').onmouseleave = function () {
+            document.getElementById('noButton').style.transform = 'translate(0, 0)';
+        };
+    </script>
+
+</body>
+</html>
